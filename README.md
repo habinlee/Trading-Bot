@@ -1,6 +1,7 @@
 # Trading-Bot
-- This is a coin trading bot working on the 'Upbit' market.
-- Trades 'DOGE' coins.
+This is a coin trading bot working on the 'Upbit' market.
+Trades 'DOGE' coins.
+
 - Buys when the current price is [higher than the target price] & [is a bull market - price going over MA5 line]
 - Sells at closing price the day coin was bought.
 
