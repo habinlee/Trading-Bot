@@ -10,4 +10,4 @@ Trades 'DOGE' coins.
 - Execution command : python main.py
 - Environment : python 3.9
 
-- Architecture details : [Coin Trading Strategy.pdf](https://github.com/habinlee/Trading-Bot/files/7066077/Coin.Trading.Strategy.pdf)
+- Architecture details : [Coin Trading Strategy.pdf](https://github.com/habinlee/Trading-Bot/files/7069916/Coin.Trading.Strategy.pdf)
