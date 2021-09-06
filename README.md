@@ -11,4 +11,4 @@ Trades 'DOGE' coins.
 - Environment : python 3.9
 
 - Architecture details : [Coin Trading Strategy.pdf](https://github.com/habinlee/Trading-Bot/files/7069916/Coin.Trading.Strategy.pdf)
-- FB Prophet Research : [Prophet.pdf](https://github.com/habinlee/Trading-Bot/files/7110901/Prophet.pdf)
+- FB Prophet Research : [Prophet.pdf](https://github.com/habinlee/Trading-Bot/files/7115414/Prophet.pdf)
