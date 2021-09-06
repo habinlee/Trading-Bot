@@ -10,14 +10,14 @@ import datetime
 # from imp import reload
 from logging_system import LoggerFile
 from best_k import bestK
-from pretty_printer import PPrint
 
 class Upbit:
     # Initializing the upbit account / API request keys
-    def __init__(self):
+    def __init__(self, coin):
         self.access_key = 'ZRVwNMcvVWrAGpxp8xkJlTNaHM4yv24VrqpKUV46'
         self.secret_key = 'VgCbEfwStdrm1QwuDwNxgOxDAH5RVcbKRB3PDOvx'
         self.server_url = 'https://api.upbit.com/v1/'
+        self.coin = coin
 
         logger_file = LoggerFile()
         self.logger = logger_file.logging()
@@ -71,12 +71,11 @@ class Upbit:
     def get_asset_volume(self, name):
         private_info = self.request_private()
         volume = 0
-        print('hello>')
         for coin in private_info:
             if coin['currency'] == name:
                 volume = coin['balance']
         
-        return volume
+        return float(volume)
 
     # Get snapshot of coin at request - today
     def get_ticker(self, query):
@@ -111,7 +110,7 @@ class Upbit:
         return date
 
     def get_yesterday(self):
-        yesterday = self.get_candle({'market' : 'KRW-DOGE', "count" : "2", "to" : self.get_date()}, "days")[1]
+        yesterday = self.get_candle({'market' : self.coin, "count" : "2", "to" : self.get_date()}, "days")[1]
 
         return yesterday
 
@@ -130,7 +129,7 @@ class Upbit:
         return range
 
     def get_target(self, k):
-        today = self.get_ticker({'markets' : 'KRW-DOGE'})[0]
+        today = self.get_ticker({'markets' : self.coin})[0]
         open_price = today['opening_price']
 
         range = self.get_range(k)
@@ -143,7 +142,7 @@ class Upbit:
         return target_price
 
     def get_ma5(self):
-        days5 = self.get_candle({'market' : 'KRW-DOGE', "count" : "6", "to" : self.get_date()}, "days")[:-1]
+        days5 = self.get_candle({'market' : self.coin, "count" : "6", "to" : self.get_date()}, "days")[:-1]
         
         close_total = 0
         for day in days5:
@@ -157,7 +156,7 @@ class Upbit:
         return ma5
 
     def get_ma20(self):
-        days20 = self.get_candle({'market' : 'KRW-DOGE', "count" : "21", "to" : self.get_date()}, "days")[:-1]
+        days20 = self.get_candle({'market' : self.coin, "count" : "21", "to" : self.get_date()}, "days")[:-1]
         
         close_total = 0
         for day in days20:
@@ -210,7 +209,7 @@ class Upbit:
             
         #     time.sleep(1)
 
-        k_getter = bestK()
+        k_getter = bestK(self.coin)
         max_vals = k_getter.get_k()
         max_k = max_vals[0]
         max_profit = max_vals[1]

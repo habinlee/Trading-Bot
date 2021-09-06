@@ -3,8 +3,8 @@ import numpy as np
 import sys
 
 class bestK:
-    def __init__(self):
-        self.df = pyupbit.get_ohlcv("KRW-DOGE")
+    def __init__(self, coin):
+        self.df = pyupbit.get_ohlcv(coin)
         self.fee = 0.005
 
     def get_profit(self, k=0.5):

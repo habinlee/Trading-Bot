@@ -3,9 +3,9 @@ from fbprophet import Prophet
 import pyupbit
 
 class Predictor:
-    def __init__(self):
+    def __init__(self, coin):
         self.predicted_price = 0
-        self.df = pyupbit.get_ohlcv("KRW-DOGE", interval="minute60")
+        self.df = pyupbit.get_ohlcv(coin, interval="minute60")
 
     def predict_close_price(self):
         self.df = self.df.reset_index()
